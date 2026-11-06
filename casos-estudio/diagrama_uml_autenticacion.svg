@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 950 680" width="100%" height="100%" style="background:#0f172a; font-family:'Segoe UI', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Markers for arrows -->
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-return" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Title & Header -->
+  <text x="475" y="38" text-anchor="middle" fill="#38bdf8" font-size="20" font-weight="bold">DIAGRAMA DE SECUENCIA UML: CASO DE ESTUDIO DE AUTENTICACIÓN</text>
+  <text x="475" y="60" text-anchor="middle" fill="#94a3b8" font-size="13">Evaluación con Burp Suite y Prevención de Enumeración de Usuarios | Framework ÆVØID</text>
+
+  <!-- Lifeline Headers (Boxes) -->
+  <!-- 1. Red Team -->
+  <rect x="40" y="80" width="130" height="44" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="105" y="106" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Analista Red Team</text>
+
+  <!-- 2. Browser -->
+  <rect x="220" y="80" width="130" height="44" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="285" y="106" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Navegador Web</text>
+
+  <!-- 3. Burp Suite Proxy -->
+  <rect x="400" y="80" width="150" height="44" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2" filter="url(#shadow)"/>
+  <text x="475" y="106" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Burp Suite (Proxy/Rep.)</text>
+
+  <!-- 4. Backend Server -->
+  <rect x="600" y="80" width="140" height="44" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="670" y="106" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Backend / Auth API</text>
+
+  <!-- 5. Database -->
+  <rect x="790" y="80" width="130" height="44" rx="6" fill="#1e293b" stroke="#34d399" stroke-width="2" filter="url(#shadow)"/>
+  <text x="855" y="106" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="600">Base de Datos</text>
+
+  <!-- Lifeline Dashed Lines -->
+  <line x1="105" y1="124" x2="105" y2="610" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="285" y1="124" x2="285" y2="610" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="475" y1="124" x2="475" y2="610" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="670" y1="124" x2="670" y2="610" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="855" y1="124" x2="855" y2="610" stroke="#065f46" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- Activation Boxes -->
+  <rect x="469" y="185" width="12" height="375" fill="#a855f7" rx="2"/>
+  <rect x="664" y="275" width="12" height="235" fill="#38bdf8" rx="2"/>
+  <rect x="849" y="340" width="12" height="70" fill="#34d399" rx="2"/>
+
+  <!-- Message 1 -->
+  <line x1="105" y1="155" x2="285" y2="155" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="195" y="147" text-anchor="middle" fill="#e2e8f0" font-size="11">1: Digita usuario y contraseña</text>
+
+  <!-- Message 2 -->
+  <line x1="285" y1="185" x2="469" y2="185" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="375" y="177" text-anchor="middle" fill="#e2e8f0" font-size="11">2: HTTP POST /login</text>
+
+  <!-- Note: Intercept Active -->
+  <rect x="365" y="200" width="220" height="42" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" filter="url(#shadow)"/>
+  <text x="475" y="217" text-anchor="middle" fill="#f8fafc" font-size="11" font-weight="600">INTERCEPT ON (Burp Suite)</text>
+  <text x="475" y="233" text-anchor="middle" fill="#f1f5f9" font-size="10">Petición detenida en memoria local</text>
+
+  <!-- Message 3 -->
+  <line x1="469" y1="260" x2="105" y2="260" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="285" y="252" text-anchor="middle" fill="#cbd5e1" font-size="11">3: Muestra payload crudo en pantalla</text>
+
+  <!-- Message 4 -->
+  <line x1="105" y1="290" x2="469" y2="290" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="285" y="282" text-anchor="middle" fill="#e2e8f0" font-size="11">4: Envía a Repeater y modifica credenciales</text>
+
+  <!-- Message 5 -->
+  <line x1="481" y1="315" x2="664" y2="315" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="572" y="307" text-anchor="middle" fill="#e2e8f0" font-size="11">5: Emite POST modificado (TLS 1.3)</text>
+
+  <!-- Message 6 -->
+  <line x1="676" y1="345" x2="849" y2="345" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow)"/>
+  <text x="762" y="337" text-anchor="middle" fill="#e2e8f0" font-size="11">6: SELECT hash de usuario</text>
+
+  <!-- Message 7 -->
+  <line x1="849" y1="400" x2="676" y2="400" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="762" y="392" text-anchor="middle" fill="#cbd5e1" font-size="11">7: Resultado: Credenciales inválidas</text>
+
+  <!-- Note: Defensive anti-enumeration -->
+  <rect x="580" y="420" width="230" height="44" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1" filter="url(#shadow)"/>
+  <text x="695" y="437" text-anchor="middle" fill="#34d399" font-size="11" font-weight="600">DEFENSA ANTI-ENUMERACIÓN</text>
+  <text x="695" y="453" text-anchor="middle" fill="#ecfdf5" font-size="10">Respuesta unificada en tiempo constante</text>
+
+  <!-- Message 8 -->
+  <line x1="664" y1="495" x2="481" y2="495" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="572" y="487" text-anchor="middle" fill="#cbd5e1" font-size="11">8: HTTP 401 {"error": "Usuario o clave incorrectos"}</text>
+
+  <!-- Message 9 -->
+  <line x1="469" y1="540" x2="105" y2="540" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="285" y="532" text-anchor="middle" fill="#cbd5e1" font-size="11">9: Visualiza respuesta unificada en Repeater</text>
+
+  <!-- Bottom Result Box -->
+  <rect x="180" y="580" width="590" height="40" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="475" y="605" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="600">Conclusión: El backend no revela si falló el usuario o la contraseña (Enumeración Bloqueada)</text>
+</svg>
