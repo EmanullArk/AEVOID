@@ -19,3 +19,5 @@
 | **CP-10** | D03/D04 | 03 | `Burp Suite` | Interceptación de login | Proxy HTTP + Repeater (`POST` login) | Comparación de 4 esquemas y prevención enumeración |
 | **CP-11** | D08 | 03 | OWASP LLM Suite | Escape semántico y fuga de System Prompt | Prompts adversariales, tags XML falsos, evasión Base64 | Evaluación de frontera de control vs datos y tasa ISR |
 | **CP-12** | D08 | 05 | Guardrails / Pydantic | Contención de exceso de agencia en APIs | Schemas deterministas, scopes de solo lectura, Human-in-the-Loop | Bloqueo determinista en backend y confirmación obligatoria en UI |
+| **CP-13** | D03 | 03 | DVWA (SQLi & RCE) | Explotación de inyecciones SQL y comandos del SO | Payloads `1' OR '1'='1` y `; whoami ; cat /etc/passwd` | Volcado completo de BD y lectura arbitraria de `/etc/passwd` en Linux |
+| **CP-14** | D03 | 03 | DVWA (XSS Reflected/Stored) | Inyección de scripts y persistencia en base de datos | `<script>alert(document.cookie)</script>` en inputs y Guestbook | Ejecución de scripts en cliente y secuestro masivo persistente de cookies |

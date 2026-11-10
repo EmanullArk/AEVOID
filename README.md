@@ -1,6 +1,6 @@
 # ÆVØID — Framework Metodológico de Ciberseguridad
 > **Metodología para la Evaluación, Análisis y Fortalecimiento de la Seguridad Informática**  
-> **Versión:** 1.0.0 (Versión consolidada con 8 laboratorios)  
+> **Versión:** 1.2.0 (Versión consolidada con 9 laboratorios)  
 > **Fecha:** Noviembre de 2026  
 > **Institución:** Universidad Santo Tomás — Seccional Tunja  
 > **Facultad:** Ingeniería de Sistemas (8° Semestre)  
@@ -109,7 +109,7 @@ sequenceDiagram
 
 ---
 
-## 4. Catálogo de los 8 Laboratorios Integrados
+## 4. Catálogo de los 9 Laboratorios Integrados
 
 Todos los laboratorios desarrollados durante el semestre en la materia fueron estandarizados como instrumentos técnicos formales dentro de **ÆVØID**:
 
@@ -123,6 +123,7 @@ Todos los laboratorios desarrollados durante el semestre en la materia fueron es
 | **FC-LAB-006** | Reconocimiento Pasivo y Mapeo de Infraestructura (`Maltego`) | `D02` (OSINT) | OSINT Pasivo | 03 Identificación |
 | **FC-LAB-007** | Interceptación de Login y Análisis Web (`Burp Suite`) | `D03/D04` (Web/APIs) | Web Testing | 03 Ident. / 04 Análisis |
 | **FC-LAB-008** | Seguridad en IA y Mitigación de Prompt Injection en LLMs | `D08` (Seguridad IA) | Ofensivo/Defensivo | 03 Ident. / 04 Anál. / 05 Mit. |
+| **FC-LAB-009** | Auditoría y Explotación Web en DVWA (SQLi, RCE, XSS, Brute Force) | `D03` (Web) | Ofensivo/Defensivo | 03 Ident. / 04 Anál. / 05 Mit. |
 
 ---
 
@@ -151,19 +152,20 @@ AEVOID-framework/
 │   ├── lab-05-ingenieria-social/      # FC-LAB-005: Escenarios de phishing WhatsApp y USBs
 │   ├── lab-06-maltego/                # FC-LAB-006: Grafos OSINT pasivo (Tesla, AWS, Microsoft)
 │   ├── lab-07-burp/                   # FC-LAB-007: Interceptación HTTP y anti-enumeración
-│   └── lab-08-prompt-injection/       # FC-LAB-008: OWASP LLM, Guardrails y Human-in-the-Loop
-├── scripts/                           # Scripts de utilidad
-├── plantillas/                        # Plantilla oficial para futuros laboratorios (Lab 9+)
+│   ├── lab-08-prompt-injection/       # FC-LAB-008: OWASP LLM, Guardrails y Human-in-the-Loop
+│   └── lab-09-dvwa/                   # FC-LAB-009: OWASP Top 10 en DVWA (SQLi, RCE, XSS)
+├── scripts/                           # Scripts de utilidad (setup_env.sh)
+├── plantillas/                        # Plantilla oficial para futuros laboratorios (Lab 10+)
 ├── casos-estudio/                     # Caso aplicado y modelado UML de autenticación
 │   ├── caso_autenticacion_web.md      # Caso de estudio con diagrama de secuencia integrado
 │   ├── diagrama_uml_caso_estudio.md   # Modelado UML completo (Secuencia, Casos de Uso y Actividades)
 │   └── diagrama_uml_autenticacion.svg # Gráfico vectorial UML de alta resolución listo para Word
 ├── resultados/                        # Resultados consolidados
-│   ├── matriz_evaluacion_pruebas.md   # Matriz con las 8 pruebas técnicas concluidas (P01-P08)
+│   ├── matriz_evaluacion_pruebas.md   # Matriz con las 9 pruebas técnicas concluidas (P01-P09)
 │   └── indicadores_metricas.md        # Indicadores: 100% de cobertura y severidades
 └── anexos/                            # Anexos formales
-    ├── anexo_a_matriz_pruebas.md      # Matriz de casos de prueba (CP-01 a CP-12)
-    ├── anexo_b_matriz_riesgos.md      # Matriz de hallazgos y riesgos (H-01 a H-08)
+    ├── anexo_a_matriz_pruebas.md      # Matriz de casos de prueba (CP-01 a CP-14)
+    ├── anexo_b_matriz_riesgos.md      # Matriz de hallazgos y riesgos (H-01 a H-10)
     ├── anexo_c_registro_evidencias.md # Catálogo completo de capturas de pantalla
     ├── anexo_d_plan_mitigacion.md     # Guía de mitigación y hardening Blue Team
     └── anexo_e_guia_github.md         # Comandos de Git y políticas de publicación

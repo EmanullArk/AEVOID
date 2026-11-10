@@ -78,3 +78,12 @@ Este anexo consolida el inventario ordenado de evidencias gráficas (capturas de
 * **Evidencia C-08.3:** Evaluación de técnicas de evasión de filtros del frontend mediante ofuscación en Base64, sinónimos rebuscados y traducción multilingüe (LLM05).
 * **Evidencia C-08.4:** Pruebas de extracción de contexto y reglas internas (*System Prompt Leakage* - LLM07) bajo pretextos de auditoría de seguridad.
 * **Evidencia C-08.5:** Diseño de arquitectura de contención defensiva: encapsulamiento de inputs, Guardrails deterministas en backend (NeMo/Pydantic) y compuerta *Human-in-the-Loop*.
+
+### FC-LAB-009: Explotación y Auditoría Web en DVWA (`lab-09-dvwa`)
+* **Evidencia C-09.1:** Despliegue del contenedor Docker con DVWA corriendo en el puerto local 8080 y configuración inicial en nivel *Security: Low*.
+* **Evidencia C-09.2:** Módulo Brute Force autenticando con `admin / password` sin restricciones de tasa ni bloqueo de cuenta.
+* **Evidencia C-09.3:** SQL Injection con entrada legítima `1`, alteración lógica mediante `1' OR '1'='1` volcando todos los usuarios y fuga de error de sintaxis con `1'`.
+* **Evidencia C-09.4:** Command Injection ejecutando ping `127.0.0.1`, encadenamiento con `; whoami` revelando el usuario `www-data` y reconocimiento de directorios con `; pwd` y `; ls`.
+* **Evidencia C-09.5:** Exfiltración no autorizada de cuentas locales del sistema mediante inyección de `; cat /etc/passwd` y extracción de datos del kernel con `; uname -a`.
+* **Evidencia C-09.6:** XSS Reflejado disparando popups con `<script>alert('XSS')</script>`, defacement dinámico del fondo a rojo y exposición de `document.cookie`.
+* **Evidencia C-09.7:** XSS Almacenado / Persistente en el libro de visitas (*Guestbook*) guardando código malicioso en la base de datos y robando cookies automáticamente a cada visitante.

@@ -72,3 +72,19 @@ Este anexo recopila las directrices y controles técnicos recomendados por el eq
    * Exigir confirmación física consciente en interfaz gráfica (mediante 2FA, token OTP o confirmación manual en pantalla) antes de que el modelo pueda desencadenar cualquier acción destructiva, irreversible o de alto impacto (borrado de registros, pagos o envíos masivos).
 5. **Asumir el System Prompt como Información Pública (LLM07):**
    * Prohibir terminantemente el almacenamiento de secretos, contraseñas, llaves de API o directivas confidenciales dentro del System Prompt. Toda la lógica de autorización debe residir en el backend.
+
+### Dominio D03: Seguridad Web Avanzada y Remediación OWASP (`lab-09-dvwa`)
+1. **Mitigación Definitiva de SQL Injection (Sentencias Preparadas):**
+   * Reemplazar toda concatenación de cadenas en consultas SQL por **consultas parametrizadas (Prepared Statements)** mediante PDO o MySQLi. El motor de base de datos compila la sintaxis previamente y trata la entrada como un valor literal inofensivo.
+   * Aplicar el principio de mínimo privilegio en el usuario de base de datos de la aplicación (revocar permisos administrativos o de acceso a tablas del sistema).
+2. **Erradicación de Command Injection / RCE:**
+   * Prohibir por estándar de desarrollo el uso de funciones de ejecución de shell (`system()`, `exec()`, `shell_exec()`, `passthru()`).
+   * Para operaciones de red como pings, emplear librerías nativas del lenguaje o validar la entrada contra listas blancas estrictas mediante expresiones regulares o funciones de tipado (`filter_var($ip, FILTER_VALIDATE_IP)`).
+   * Aislar el proceso del servidor web en contenedores con sistemas de archivos de solo lectura (*read-only rootfs*) y sin privilegios de root (`USER www-data` con capacidades de Linux limitadas).
+3. **Neutralización Integral de XSS (Reflected y Stored):**
+   * **Codificación Contextual de Salida:** Escapar cualquier dato proveniente del usuario o de la base de datos antes de incrustarlo en el DOM HTML utilizando `htmlspecialchars($string, ENT_QUOTES, 'UTF-8')`.
+   * **Banderas de Sesión Segura:** Configurar obligatoriamente la bandera `HttpOnly` en las cookies de sesión. Esto bloquea cualquier intento de exfiltración de credenciales mediante `document.cookie`.
+   * **Políticas de Seguridad de Contenido (CSP):** Desplegar la cabecera HTTP `Content-Security-Policy: default-src 'self'` para impedir la ejecución de código JavaScript en línea no firmado.
+4. **Protección contra Fuerza Bruta:**
+   * Limitar el número de intentos fallidos permitidos por dirección IP y por cuenta de usuario (máximo 5 intentos cada 15 minutos).
+   * Incorporar mecanismos de desafío automatizado (reCAPTCHA v3) y requerir Autenticación Multifactor (MFA / TOTP).
