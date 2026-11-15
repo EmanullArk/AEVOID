@@ -37,7 +37,7 @@ sequenceDiagram
     AD->>CE: Entrega diagnóstico preliminar de defensas y línea base
 
     Note over RS,EV: FASE 03: IDENTIFICACIÓN (PRUEBAS TÉCNICAS)
-    AO->>AO: Ejecuta pruebas controladas (OSINT, DNS, Burp, Steghide, Prompts)
+    AO->>AO: Ejecuta pruebas controladas (OSINT, DNS, Burp, Steghide, Prompts, DVWA y ZAP)
     AO->>CUST: Entrega capturas, salidas de terminal y hashes SHA-256
     AD->>CUST: Registra alertas y eventos detectados en defensas
 
@@ -66,7 +66,7 @@ sequenceDiagram
 | :--- | :--- | :--- |
 | **Responsable del Sistema** | Es el dueño del activo o la entidad que nos contrata/autoriza. Define los límites y da el aval legal. | Autorización firmada y Reglas de Compromiso (RoE). |
 | **Coordinador de Evaluación** | El líder del equipo. Planifica los tiempos, asigna tareas a los compañeros y asegura que nadie se pase del alcance. | Plan de evaluación y actas de inicio/cierre. |
-| **Analista Ofensivo (Red Team)** | El que ejecuta las pruebas técnicas: escaneos DNS, clonación web, interceptación en Burp y ataques de prompt injection. | Bitácora de comandos, PoCs y registros técnicos. |
+| **Analista Ofensivo (Red Team)** | El que ejecuta las pruebas técnicas: escaneos DNS, clonación web, interceptación en Burp, ataques de prompt injection, explotación web en DVWA y escaneo automatizado con OWASP ZAP. | Bitácora de comandos, PoCs y registros técnicos. |
 | **Analista Defensivo (Blue Team)** | El que analiza las alertas, mide la línea base, propone las mitigaciones y aplica parches de hardening. | Diagnóstico de controles, parches y cambios aplicados. |
 | **Coordinador Purple Team** | El integrador del grupo. Sienta al Red Team y al Blue Team a dialogar, traduce hallazgos en matrices de riesgo comprensibles. | Matriz de Riesgos y Plan de Mitigación unificado. |
 | **Custodio de Evidencias** | El encargado de la cadena de custodia. Calcula los hashes SHA-256 de cada archivo y captura para certificar su autenticidad. | Registro de cadena de custodia y catálogo de hashes. |

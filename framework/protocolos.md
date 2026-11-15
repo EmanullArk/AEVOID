@@ -23,3 +23,11 @@ Para cualquier evidencia digital capturada (capturas de terminal, volcados de re
 * En el segundo cero tras obtener la evidencia, se generará su huella criptográfica SHA-256 (`sha256sum archivo > hash.txt`).
 * Se registrará en la bitácora: fecha, hora exacta, nombre del integrante que ejecutó el comando y herramienta utilizada.
 * Los archivos fuente originales se marcarán como de solo lectura (`chmod 400`) y se trabajará exclusivamente sobre copias de trabajo.
+
+---
+
+## 3. Protocolo para Pruebas de Explotación Web y Escaneo Automatizado DAST
+Para las prácticas de seguridad de aplicaciones web (`FC-LAB-007`, `FC-LAB-009`, `FC-LAB-010`, `FC-LAB-011`):
+1. **Aislamiento en Contenedores:** Toda prueba que involucre subida de webshells (`shell.php`), inyección de comandos en el SO (`system()`) o manipulación de bases de datos se ejecutará exclusivamente dentro de contenedores Docker locales o entornos de laboratorio aislados en loopback (`127.0.0.1`), prohibiendo su despliegue hacia redes públicas no autorizadas.
+2. **Limitación de Hilos en Escaneo DAST:** En herramientas automatizadas como OWASP ZAP, se limitará el número de hilos concurrentes del Spider y del Active Scanner para no saturar los servicios web ni generar denegación de servicio accidental.
+3. **Cero Persistencia Residual:** Al concluir la verificación de la prueba, el Analista Ofensivo debe eliminar inmediatamente cualquier webshell, archivo temporal o registro inyectado en el servidor para restaurar el estado limpio del sistema.

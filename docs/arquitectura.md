@@ -58,12 +58,17 @@ flowchart TD
 * **De qué trata:** La fase práctica y técnica. Aquí es donde ponemos a prueba el sistema utilizando nuestros laboratorios e instrumentos.
 * **Entradas:** Alcance aprobado y herramientas listas (Burp Suite, Maltego, dig, HTTrack, Steghide, prompts adversariales).
 * **Qué hacemos:** 
-  * Reconocimiento pasivo en fuentes abiertas con Maltego (`FC-LAB-006`).
+  * Acondicionamiento de entornos con mínimo privilegio y terminal Kali (`FC-LAB-001`).
   * Consultas DNS con `dig` y `nslookup` buscando fallas de configuración y falta de DNSSEC (`FC-LAB-002`).
   * Clonación web con HTTrack para revisar fuga de información o almacenamiento inseguro en frontend (`FC-LAB-003`).
-  * Interceptación de tráfico web con Burp Suite para probar logins y control de accesos (`FC-LAB-007`).
   * Análisis forense de archivos multimedia para detectar canales encubiertos o datos alterados (`FC-LAB-004`).
+  * Modelado de vectores humanos frente a phishing y malware en USB (`FC-LAB-005`).
+  * Reconocimiento pasivo en fuentes abiertas con Maltego (`FC-LAB-006`).
+  * Interceptación de tráfico web con Burp Suite para probar logins y control de accesos (`FC-LAB-007`).
   * Pruebas de escape semántico e inyección de prompts en sistemas de IA (`FC-LAB-008`).
+  * Auditoría y explotación web en DVWA: SQLi, Command Injection / RCE, XSS y Brute Force (`FC-LAB-009`).
+  * Explotación avanzada en servidor web: CSRF, RCE vía webshell en File Upload, LFI traversal y Blind SQLi (`FC-LAB-010`).
+  * Análisis dinámico automatizado DAST, interceptación proxy en Firefox y escaneo de vulnerabilidades con OWASP ZAP (`FC-LAB-011`).
 * **Salidas:** Bitácora de comandos ejecutados, capturas de pantalla de hallazgos y paquete de evidencias selladas con su hash SHA-256.
 * **Criterio de cierre:** Evidencias entregadas al Custodio con cadena de custodia intacta.
 
@@ -75,13 +80,18 @@ flowchart TD
 * **Criterio de cierre:** Matriz revisada y consensuada entre quien atacó (Red Team) y quien defiende (Blue Team).
 
 ### Fase 05: Mitigación
-* **De qué trata:** Solucionar las cosas. No sirve de nada encontrar diez vulnerabilidades si no ayudamos a corregirlas.
+* **De qué trata:** Solucionar las cosas. No sirve de nada encontrar vulnerabilidades si no ayudamos a corregirlas.
 * **Entradas:** Matriz de riesgos con los puntos críticos identificados.
 * **Qué hacemos:** Diseñamos y aplicamos soluciones reales:
   * Firmar zonas DNS con DNSSEC y ajustar registros SPF a directivas estrictas (`-all`).
   * Quitar variables sensibles de `localStorage` y usar cookies seguras (`HttpOnly`, `Secure`, `SameSite`).
   * Implementar respuestas genéricas en los logins para evitar que adivinen usuarios válidos (anti-enumeración).
   * Montar guardrails deterministas en el backend (NeMo / Pydantic) y confirmación humana (*Human-in-the-Loop*) para acciones críticas en aplicaciones con IA.
+  * Reemplazar consultas dinámicas por sentencias preparadas (PDO) y erradicar funciones de ejecución de shell (`system()`, `exec()`).
+  * Implementar tokens anti-CSRF por sesión (Synchronizer Token Pattern) y exigir re-autenticación.
+  * Desplegar whitelists estrictas de extensión y MIME-type para subidas, aislando archivos fuera de la raíz web y desactivando ejecución de scripts.
+  * Proteger rutas con listas blancas canónicas para neutralizar LFI / Directory Traversal.
+  * Desplegar cabeceras de seguridad HTTP (CSP, X-Frame-Options, X-Content-Type-Options) y suprimir banners identificativos del servidor (`ServerTokens Prod`, `expose_php = Off`).
 * **Salidas:** Registro de cambios aplicados, parches de código y guías de hardening.
 * **Criterio de cierre:** Parches desplegados y confirmados por los administradores.
 

@@ -22,7 +22,7 @@ Establecer un enfoque sistemático, accesible y estandarizado para evaluar y for
 ### Objetivos Específicos
 1. **Delimitar el alcance:** Establecer claramente qué se puede tocar y qué no, mediante Reglas de Compromiso (RoE) firmadas.
 2. **Medir la línea base:** Analizar las defensas iniciales antes de lanzar cualquier prueba técnica.
-3. **Ejecutar pruebas reproducibles:** Aplicar procedimientos técnicos (OSINT, DNS, web, forense, prompt injection) que cualquier otro analista pueda replicar paso a paso.
+3. **Ejecutar pruebas reproducibles:** Aplicar procedimientos técnicos (OSINT, DNS, seguridad web, análisis forense, prompt injection, explotación en DVWA y escaneo DAST con OWASP ZAP) que cualquier otro analista pueda replicar paso a paso.
 4. **Priorizar riesgos:** Transformar hallazgos técnicos en matrices de riesgo claras, evaluando probabilidad e impacto.
 5. **Mitigar con criterio:** Diseñar controles de hardening, parches y guardrails para tapar las fallas encontradas.
 6. **Verificar efectividad:** Repetir las pruebas (re-testing) para certificar con hechos que la solución funcionó.

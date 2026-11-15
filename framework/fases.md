@@ -22,8 +22,8 @@ A continuación se detallan las entradas, actividades, salidas y criterios de ci
 * **Criterio de Cierre:** Línea base aprobada por el Analista Defensivo y el Coordinador.
 
 ### Fase 03: Identificación
-* **Entradas:** Escenarios de prueba autorizados y herramientas de laboratorio listas (Burp Suite, Maltego, dig, HTTrack, Steghide, OWASP LLM Suite).
-* **Actividades:** Ejecución de pruebas técnicas controladas: recolección OSINT pasiva, footprinting DNS, clonación web, interceptación proxy de peticiones de login, análisis forense de imágenes sospechosas y pruebas adversariales de prompt injection.
+* **Entradas:** Escenarios de prueba autorizados y herramientas de laboratorio listas (Burp Suite, Maltego, dig, HTTrack, Steghide, OWASP LLM Suite, contenedor Docker DVWA y OWASP ZAP).
+* **Actividades:** Ejecución de pruebas técnicas controladas: recolección OSINT pasiva, footprinting DNS, clonación web, interceptación proxy de peticiones de login, análisis forense de imágenes sospechosas, pruebas adversariales de prompt injection, explotación web en DVWA (SQLi, RCE, XSS, CSRF, subida de webshells, LFI) y análisis dinámico DAST automatizado con OWASP ZAP.
 * **Salidas:** Bitácora cronológica de comandos, capturas de pantalla de hallazgos y paquetes de evidencias con hashes SHA-256.
 * **Criterio de Cierre:** Registro íntegro de evidencias entregado al Custodio bajo estricta cadena de custodia.
 
@@ -35,7 +35,7 @@ A continuación se detallan las entradas, actividades, salidas y criterios de ci
 
 ### Fase 05: Mitigación
 * **Entradas:** Matriz de riesgos con las fallas priorizadas.
-* **Actividades:** Diseño e implementación de parches técnicos: endurecimiento DNS con DNSSEC, eliminación de datos sensibles en `localStorage`, adopción de respuestas de error unificadas (anti-enumeración), y guardrails deterministas en backend para IA (*Human-in-the-Loop*).
+* **Actividades:** Diseño e implementación de parches técnicos: endurecimiento DNS con DNSSEC, eliminación de datos sensibles en `localStorage`, adopción de respuestas de error unificadas (anti-enumeración), guardrails deterministas en backend para IA (*Human-in-the-Loop*), sentencias preparadas (PDO), erradicación de funciones shell, validación estricta de subidas de archivos (MIME/extensiones seguras), tokens anti-CSRF por sesión, protección contra LFI con rutas canónicas y despliegue de cabeceras de seguridad HTTP (CSP, X-Frame-Options, cookies HttpOnly).
 * **Salidas:** Registro de cambios de configuración, parches de código y guías de hardening.
 * **Criterio de Cierre:** Despliegue de las soluciones confirmado por el equipo administrador.
 

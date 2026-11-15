@@ -17,4 +17,4 @@ chmod 700 ~/aevoid_workspace/evidencias ~/aevoid_workspace/reportes
 chmod 755 ~/aevoid_workspace/scripts
 
 echo "[+] Estructura creada con permisos 700 en evidencias y reportes."
-echo "[+] Entorno listo para ejecución de laboratorios FC-LAB-001 a FC-LAB-008."
+echo "[+] Entorno listo para ejecución de laboratorios FC-LAB-001 a FC-LAB-011."

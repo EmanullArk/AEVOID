@@ -16,7 +16,7 @@ Dentro de la aplicación práctica de **ÆVØID** (Fase 03 Identificación & Fas
 3. **PortSwigger Web Security Academy** (Entorno de entrenamiento con defensas modernas).
 4. **SAC — Universidad Santo Tomás** (Sistema de Información Académica institucional).
 
-Utilizamos **Burp Suite** para interceptar las peticiones HTTP/HTTPS, detenerlas antes de que llegaran al servidor, modificar credenciales en la pestaña Repeater y analizar qué tan protegidos están frente a ataques de fuerza bruta y **enumeración de usuarios**.
+Este caso de estudio se articula directamente con los instrumentos técnicos **FC-LAB-007 (Interceptación con Burp Suite)** y **FC-LAB-011 (Escaneo DAST con OWASP ZAP)** del catálogo de ÆVØID. Mientras que en el laboratorio 7 utilizamos **Burp Suite** para interceptar manualmente las peticiones HTTP/HTTPS, detenerlas antes de llegar al servidor y alterar credenciales en la pestaña Repeater para analizar la **anti-enumeración de usuarios**, en el laboratorio 11 complementamos el análisis con escaneo dinámico automatizado de formularios de acceso (incluyendo portales en producción como Spotify).
 
 ---
 
@@ -37,32 +37,51 @@ Utilizamos **Burp Suite** para interceptar las peticiones HTTP/HTTPS, detenerlas
 
 ## 3. Modelado UML: Diagrama de Secuencia de Interceptación y Anti-Enumeración
 
-El siguiente diagrama de secuencia UML modela el ciclo de vida de la petición analizada: desde que el usuario digita las credenciales, pasando por la retención en el proxy Burp Suite y su modificación en Repeater, hasta la respuesta homogénea del backend que neutraliza el ataque de enumeración de usuarios:
+El siguiente diagrama de secuencia UML modela el ciclo de vida completo de la evaluación de seguridad en autenticación: abarca desde la interceptación manual y prueba de anti-enumeración con **Burp Suite** (`FC-LAB-007`), pasando por el escaneo dinámico automatizado y auditoría de cabeceras/cookies con **OWASP ZAP** (`FC-LAB-011`), hasta los controles de hardening aplicados por el Blue Team (`FC-LAB-010`):
 
 ```mermaid
 sequenceDiagram
     autonumber
-    actor RedTeam as Analista (Red Team)
-    participant Browser as Navegador Chromium
-    participant Burp as Proxy Burp Suite (Intercept/Repeater)
-    participant Backend as Servidor Web / API de Login
-    participant DB as Base de Datos (Hash Checker)
+    actor RedTeam as Analista (Red/Purple Team)
+    participant Browser as Navegador (Firefox)
+    participant Burp as Burp Suite (Manual Proxy)
+    participant ZAP as OWASP ZAP (DAST/Spider)
+    participant Backend as Servidor Web / Auth API
+    participant DB as Base de Datos
 
-    RedTeam->>Browser: Introduce credenciales en formulario
-    Browser->>Burp: Emite petición HTTP POST con credenciales
-    Note over Burp: Intercept ON: La petición queda detenida localmente
-    Burp-->>RedTeam: Permite inspeccionar cabeceras y cuerpo
+    Note over RedTeam,DB: FASE 1: INTERCEPTACIÓN MANUAL Y ANTI-ENUMERACIÓN (BURP SUITE — FC-LAB-007)
+    RedTeam->>Browser: 1: Digita usuario y clave de prueba
+    Browser->>Burp: 2: HTTP POST /login (Credenciales)
+    Note over Burp: INTERCEPT ON (Burp Suite):<br/>Petición retenida en memoria del proxy
+    Burp-->>RedTeam: 3: Muestra payload crudo (Decode Base64 en SAC USTA)
+    RedTeam->>Burp: 4: Envía a Repeater y altera credenciales
+    Burp->>Backend: 5: Emite POST modificado (TLS 1.3)
+    Backend->>DB: 6: SELECT hash de usuario
+    DB-->>Backend: 7: Resultado: Credenciales erróneas
+    Note over Backend: DEFENSA ANTI-ENUMERACIÓN:<br/>Respuesta homogénea en tiempo constante
+    Backend-->>Burp: 8: HTTP 401 Unauthorized {"error": "Usuario o clave incorrectos"}
+    Burp-->>RedTeam: 9: Confirma respuesta unificada (Enumeración neutralizada)
 
-    RedTeam->>Burp: Clona petición a Repeater y modifica credenciales
-    Burp->>Backend: Envía solicitud POST modificada vía TLS 1.3
-    Backend->>DB: Consulta usuario y valida hash criptográfico
-    DB-->>Backend: Resultado: Fallo de autenticación
-    Note over Backend: Aplica política defensiva anti-enumeración:<br/>Retorna mensaje unificado en tiempo constante
-    Backend-->>Burp: HTTP 401 Unauthorized / JSON {"error": "Usuario o clave incorrectos"}
-    Burp-->>RedTeam: Exhibe respuesta unificada (Enumeración neutralizada)
+    Note over RedTeam,DB: FASE 2: ESCANEO DINÁMICO AUTOMATIZADO DAST Y SPIDER (OWASP ZAP — FC-LAB-011)
+    RedTeam->>ZAP: 10: Ajusta proxy (127.0.0.1:8090) y lanza Automated Scan
+    ZAP->>Backend: 11: Spider rastrea árbol de URLs y formularios (DVWA / Spotify)
+    ZAP->>Backend: 12: Active Scanner inyecta sondas de inyección y prueba endpoints
+    Backend-->>ZAP: 13: Respuestas HTTP (200, 302, 401) y cabeceras
+    Note over ZAP: ALERTAS DAST DETECTADAS (A05):<br/>Falta CSP, falta X-Frame-Options y HttpOnly
+    ZAP-->>RedTeam: 14: Genera reporte formal de auditoría DAST en HTML
+
+    Note over RedTeam,DB: FASE 3: HARDENING DEFENSIVO DE SESIÓN Y CABECERAS (BLUE TEAM — FC-LAB-010 & FC-LAB-011)
+    Backend-->>Browser: 15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF
+    Backend-->>Browser: 16: Cabeceras: Content-Security-Policy + X-Frame-Options: SAMEORIGIN + ServerTokens Prod
 ```
 
-> Para consultar el modelo UML completo con **Diagrama de Casos de Uso** y **Diagrama de Actividades**, consulta el documento dedicado: [diagrama_uml_caso_estudio.md](diagrama_uml_caso_estudio.md).
+### Gráfico Vectorial UML de Alta Definición
+A continuación se presenta la representación visual estandarizada en formato SVG:
+
+![Diagrama de Secuencia UML — Interceptación y Anti-Enumeración](diagrama_uml_autenticacion.svg)
+
+> **Nota para entrega de informes:** El archivo vectorial editable se encuentra disponible en [diagrama_uml_autenticacion.svg](diagrama_uml_autenticacion.svg), optimizado para insertarse en Microsoft Word o exportarse a PDF con nitidez vectorial al 100%.  
+> Para consultar el modelo UML ampliado con **Diagrama de Casos de Uso** y **Diagrama de Actividades**, consulta el documento dedicado: [diagrama_uml_caso_estudio.md](diagrama_uml_caso_estudio.md).
 
 ---
 

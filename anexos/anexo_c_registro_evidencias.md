@@ -87,3 +87,33 @@ Este anexo consolida el inventario ordenado de evidencias gráficas (capturas de
 * **Evidencia C-09.5:** Exfiltración no autorizada de cuentas locales del sistema mediante inyección de `; cat /etc/passwd` y extracción de datos del kernel con `; uname -a`.
 * **Evidencia C-09.6:** XSS Reflejado disparando popups con `<script>alert('XSS')</script>`, defacement dinámico del fondo a rojo y exposición de `document.cookie`.
 * **Evidencia C-09.7:** XSS Almacenado / Persistente en el libro de visitas (*Guestbook*) guardando código malicioso en la base de datos y robando cookies automáticamente a cada visitante.
+
+### FC-LAB-010: Explotación Avanzada en Servidor Web DVWA (`lab-10-dvwa-avanzado`)
+* **Evidencia C-10.1:** Cambio legítimo de contraseña desde el módulo CSRF y confirmación en pantalla *"Password Changed"*.
+* **Evidencia C-10.2:** Modificación no consentida de clave directamente desde la URL mediante parámetros GET sin token anti-CSRF ni re-autenticación.
+* **Evidencia C-10.3:** Redacción del script de webshell `shell.php` con el editor `nano` en la terminal de Kali Linux.
+* **Evidencia C-10.4:** Carga exitosa de `shell.php` en el módulo File Upload sin validación de tipo MIME ni extensión, exponiendo la ruta relativa de almacenamiento.
+* **Evidencia C-10.5:** Ejecución remota de comandos en el servidor pasando `cmd=whoami` y obteniendo respuesta con el usuario `www-data`.
+* **Evidencia C-10.6:** Reconocimiento de rutas internas del servidor mediante `cmd=pwd` arrojando `/var/www/html/hackable/uploads`.
+* **Evidencia C-10.7:** Enumeración de ficheros con `cmd=ls` y auditoría detallada de permisos y usuarios con `cmd=ls -la`.
+* **Evidencia C-10.8:** Identificación de la versión del kernel y sistema operativo mediante `cmd=uname -a`.
+* **Evidencia C-10.9:** Exfiltración crítica de cuentas locales del sistema operativo mediante inyección de `cmd=cat /etc/passwd`.
+* **Evidencia C-10.10:** Comportamiento esperado en File Inclusion cargando `page=file1.php`.
+* **Evidencia C-10.11:** Directory Traversal mediante `page=/etc/passwd` logrando lectura arbitraria del archivo interno del sistema en el navegador.
+* **Evidencia C-10.12:** Encadenamiento LFI + Webshell con `page=../../hackable/uploads/shell.php&cmd=whoami` reactivando la ejecución remota de comandos como `www-data`.
+* **Evidencia C-10.13:** Consulta booleana normal en Blind SQLi con ID `1` (*"User ID exists in the database"*).
+* **Evidencia C-10.14:** Provocación de respuesta falsa con `1' AND 1=2 #` (*"User ID is MISSING from the database"*), confirmando el canal de inferencia.
+* **Evidencia C-10.15:** Inferencia y validación del nombre de la base de datos mediante `1' AND SUBSTRING(database(),1,1)='d' #` y confirmación total con `1' AND database()='dvwa' #`.
+
+### FC-LAB-011: Escaneo Automatizado DAST y Proxy con OWASP ZAP (`lab-11-owasp-zap`)
+* **Evidencia C-11.1:** Verificación de instalación de OWASP ZAP en Kali Linux y despliegue del contenedor Docker de DVWA en `127.0.0.1:8080`.
+* **Evidencia C-11.2:** Configuración del proxy manual en Firefox apuntando a `127.0.0.1:8090` y sincronización con el proxy local de escucha de ZAP.
+* **Evidencia C-11.3:** Lanzamiento del Automated Scan y rastreo web con el motor ZAP Spider contra la aplicación local.
+* **Evidencia C-11.4:** Panel de Historial de tráfico capturado registrando peticiones GET/POST, tiempos de respuesta y códigos de estado HTTP.
+* **Evidencia C-11.5:** Árbol de Alertas de seguridad detectadas en DVWA (ausencia de cabecera CSP, falta de X-Frame-Options, cookies sin HttpOnly).
+* **Evidencia C-11.6:** Generación y exportación formal del informe de vulnerabilidades DAST en formato HTML estructurado.
+* **Evidencia C-11.7:** Reconfiguración de Firefox a "No proxy" y preparación de escaneo hacia URLs de inicio de sesión externas.
+* **Evidencia C-11.8:** Monitoreo del avance del escaneo activo y registro de peticiones hacia el formulario de login externo.
+* **Evidencia C-11.9:** Panel de alertas de riesgo medio y bajo generadas sobre el portal de login externo.
+* **Evidencia C-11.10:** Escaneo pasivo y de mapeo de rutas sobre la interfaz de login de Spotify (`accounts.spotify.com`).
+* **Evidencia C-11.11:** Resumen comparativo de alertas de seguridad clasificadas por severidad técnica y correlación con el OWASP Top 10.

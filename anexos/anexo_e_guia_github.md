@@ -13,7 +13,7 @@ Este anexo detalla el flujo de trabajo en Git y GitHub especificado rigurosament
 
 * **Rama `main`:**
   * Contiene la versión estable y verificada del framework.
-  * Los 8 laboratorios (`lab-01-shell` a `lab-08-prompt-injection`) se organizan como directorios permanentes en `main`.
+  * Los 11 laboratorios (`lab-01-shell` a `lab-11-owasp-zap`) se organizan como directorios permanentes en `main`.
 * **Ramas de Trabajo Temporales:**
   * `feature/lab-08`: Rama de trabajo utilizada para el desarrollo e integración de la práctica de Prompt Injection en LLMs.
   * `docs/glosario`: Rama de trabajo para consolidar definiciones técnicas y normativas.
@@ -22,7 +22,10 @@ Este anexo detalla el flujo de trabajo en Git y GitHub especificado rigurosament
 * **Etiquetado de Versiones Semánticas (Tags):**
   * `v0.1.0`: Versión inicial preliminar con las bases metodológicas.
   * `v0.2.0`: Integración intermedia de laboratorios iniciales (DNS, Web, Forense).
-  * `v1.0.0`: Versión consolidada y completa con los 8 laboratorios integrados y anexos cerrados.
+  * `v1.0.0`: Versión consolidada inicial (8 laboratorios).
+  * `v1.1.0`: Integración de práctica de explotación web en DVWA (Lab 9).
+  * `v1.2.0`: Integración de explotación avanzada en DVWA (Lab 10).
+  * `v1.3.0`: Versión final consolidada y completa con los 11 laboratorios integrados, métricas al 100% y anexos cerrados.
 
 ---
 
@@ -86,10 +89,10 @@ git merge feature/lab-08 -m "merge: Integración de rama feature/lab-08 hacia ma
 git tag -a v0.2.0 -m "Versión v0.2.0: Integración de laboratorios hasta Web y Forense"
 ```
 
-### Paso 5: Etiquetar la versión consolidada final `v1.0.0`
+### Paso 5: Etiquetar las versiones consolidadas (Tags)
 ```bash
-# Etiqueta de entrega final consolidada
-git tag -a v1.0.0 -m "Versión v1.0.0: Framework ÆVØID consolidado con 8 laboratorios, matrices y anexos completos"
+# Etiqueta de entrega final consolidada v1.3.0 (con los 11 laboratorios)
+git tag -a v1.3.0 -m "Versión v1.3.0: Framework ÆVØID consolidado con los 11 laboratorios, matrices y anexos completos"
 ```
 
 ### Paso 6: Vincular tu repositorio remoto de GitHub y subirlo

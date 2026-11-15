@@ -22,7 +22,7 @@ La severidad de los hallazgos en **ÆVØID** se calcula cruzando la **Probabilid
 
 ## 2. Niveles de Severidad y Tiempos de Respuesta Recomendados
 
-* **Crítica:** Falla que permite compromiso total del servidor o robo masivo inmediato sin autenticación. *Plazo de atención: Inmediato (< 24 horas).*
-* **Alta:** Exfiltración demostrada de archivos clasificados (`lab-04`), engaño por phishing con robo de dinero (`lab-05`) o vulnerabilidad a Prompt Injection con llamadas destructivas a APIs (`lab-08`). *Plazo de atención: < 7 días hábiles.*
-* **Media:** Exposición de infraestructura en la nube (`lab-06`), falta de DNSSEC (`lab-02`) o riesgo de fuerza bruta en login si carece de MFA (`lab-07`). *Plazo de atención: < 30 días hábiles.*
-* **Baja / Informativa:** Buenas prácticas de programación frontend (`lab-03`) y permisos del sistema operativo base (`lab-01`). *Plazo de atención: Próximo ciclo de mantenimiento.*
+* **Crítica:** Falla que permite compromiso total del servidor, ejecución remota de comandos en el sistema operativo mediante RCE o subida de webshells (`lab-09`, `lab-10`), inclusión local de archivos sensibles (`/etc/passwd`), o robo masivo persistente de sesiones con XSS Stored. *Plazo de atención: Inmediato (< 24 horas).*
+* **Alta:** Exfiltración demostrada de archivos clasificados (`lab-04`), engaño por phishing con robo de dinero (`lab-05`), vulnerabilidad a Prompt Injection con llamadas destructivas a APIs (`lab-08`), vulnerabilidades DAST que exponen cookies de sesión a secuestro o carencia de Content Security Policy (`lab-11`), o cambios forzados de credenciales administrativas por CSRF (`lab-10`). *Plazo de atención: < 7 días hábiles.*
+* **Media:** Exposición de infraestructura en la nube (`lab-06`), falta de DNSSEC (`lab-02`), riesgo de fuerza bruta en login si carece de MFA (`lab-07`), o inferencia ciega de metadatos de base de datos (`lab-10`). *Plazo de atención: < 30 días hábiles.*
+* **Baja / Informativa:** Buenas prácticas de programación frontend (`lab-03`), exposición pasiva de banners de servidor web (`lab-11`) y permisos del sistema operativo base (`lab-01`). *Plazo de atención: Próximo ciclo de mantenimiento.*

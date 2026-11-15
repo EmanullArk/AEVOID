@@ -88,3 +88,49 @@ Este anexo recopila las directrices y controles técnicos recomendados por el eq
 4. **Protección contra Fuerza Bruta:**
    * Limitar el número de intentos fallidos permitidos por dirección IP y por cuenta de usuario (máximo 5 intentos cada 15 minutos).
    * Incorporar mecanismos de desafío automatizado (reCAPTCHA v3) y requerir Autenticación Multifactor (MFA / TOTP).
+
+### Dominio D03: Hardening del Servidor y Control de Flujos Avanzados (`lab-10-dvwa-avanzado`)
+1. **Protección Definitiva contra CSRF:**
+   * **Patrón de Token de Sincronización (Synchronizer Token):** Generar tokens anti-CSRF criptográficamente seguros por sesión (`bin2hex(random_bytes(32))`) e insertarlos en formularios como campos ocultos obligatorios.
+   * **Validación en Servidor:** Comparar con funciones seguras contra temporización (`hash_equals()`) antes de procesar cualquier modificación.
+   * **Uso Exclusivo de Métodos Seguros:** Rechazar cambios de contraseña o mutaciones de datos tramitadas por `GET`.
+   * **Atributo SameSite:** Establecer `SameSite=Strict` o `SameSite=Lax` en las directivas de cookies de sesión para impedir su envío trans-sitio.
+   * **Re-autenticación Obligatoria:** Exigir siempre la confirmación de la contraseña actual antes de actualizar credenciales.
+2. **Hardening de Carga de Archivos (Anti-Webshell & Anti-RCE):**
+   * **Lista Blanca Estricta de Extensiones:** Permitir únicamente extensiones seguras (`.jpg`, `.png`, `.pdf`) y rechazar cualquier variante ejecutable (`.php`, `.phtml`, `.phar`, `.sh`).
+   * **Validación de Tipo MIME Real:** Inspeccionar el archivo con `finfo_file()` o analizadores de imagen reales (`getimagesize()`), nunca confiar en el `Content-Type` de la cabecera HTTP.
+   * **Renombrado y Almacenamiento Aislado:** Asignar nombres aleatorios UUID a los archivos y guardarlos fuera de la raíz pública del servidor web (`/var/data/uploads` en lugar de `/var/www/html/uploads`).
+   * **Deshabilitar Motores de Scripting:** Configurar el servidor web para desactivar la ejecución de PHP en la carpeta de subidas (`php_flag engine off` en Apache o `location ^~ /uploads/ { }` sin paso a FastCGI en Nginx).
+3. **Mitigación de Inclusión de Archivos (LFI / Path Traversal):**
+   * **Lista Blanca de Controladores/Vistas:** Mapear identificadores clave a rutas estáticas predefinidas en el código, evitando incluir variables directas del usuario.
+   * **Sanitización Canónica:** Utilizar `basename()` para neutralizar secuencias `../` y validar con `realpath()` que la ruta final permanezca estrictamente dentro del directorio autorizado.
+4. **Defensa contra Blind SQL Injection:**
+   * Emplear sentencias preparadas (PDO / MySQLi) en todas las consultas numéricas y textuales.
+   * Estandarizar respuestas y códigos de estado HTTP ante búsquedas para impedir que atacantes infieran la existencia de datos mediante respuestas booleanas o de temporización.
+
+### Dominio D03 & D04: DAST Automatizado, Cabeceras HTTP y DevSecOps (`lab-11-owasp-zap`)
+1. **Despliegue de Cabeceras de Seguridad HTTP:**
+   * Configurar en el servidor web o reverse proxy las cabeceras defensivas estándar:
+     ```nginx
+     # Prevenir Clickjacking
+     add_header X-Frame-Options "SAMEORIGIN" always;
+     # Bloquear interpretación errónea de tipos MIME
+     add_header X-Content-Type-Options "nosniff" always;
+     # Política de Seguridad de Contenido (CSP)
+     add_header Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:;" always;
+     # Forzar HTTPS estricto
+     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" always;
+     # Control de fugas de referencia
+     add_header Referrer-Policy "strict-origin-when-cross-origin" always;
+     ```
+2. **Endurecimiento de Parámetros de Cookies de Sesión:**
+   * Forzar en la configuración de la aplicación o del runtime (`php.ini`, Express, Django) los atributos de protección:
+     ```ini
+     session.cookie_httponly = 1
+     session.cookie_secure = 1
+     session.cookie_samesite = "Lax"
+     ```
+3. **Ofuscación y Supresión de Banners del Servidor:**
+   * Desactivar la exposición de versiones de Apache y módulos instalados configurando `ServerTokens Prod` y `ServerSignature Off` en `apache2.conf`, así como `expose_php = Off` en `php.ini`.
+4. **Integración de Escaneos DAST en Canalizaciones CI/CD:**
+   * Automatizar escaneos de línea base con OWASP ZAP en GitHub Actions o GitLab CI (`zap-baseline.py`) para detectar regresiones de seguridad, cabeceras ausentes y cookies vulnerables antes de liberar código a producción.
