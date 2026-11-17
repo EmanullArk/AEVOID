@@ -26,17 +26,17 @@ sequenceDiagram
     participant Browser as Navegador (Firefox)
     participant Burp as Burp Suite (Manual Proxy)
     participant ZAP as OWASP ZAP (DAST/Spider)
-    participant Backend as Servidor Web / Auth API
-    participant DB as Base de Datos
+    participant Backend as Servidor Web / Auth API (Juice Shop/Q10/SAC/DVWA)
+    participant DB as Base de Datos (MySQL/PostgreSQL)
 
     Note over RedTeam,DB: FASE 1: INTERCEPTACIÓN MANUAL Y ANTI-ENUMERACIÓN (BURP SUITE — FC-LAB-007)
     RedTeam->>Browser: 1: Digita usuario y clave de prueba
-    Browser->>Burp: 2: HTTP POST /login (Credenciales)
+    Browser->>Burp: 2: HTTP POST /login (Credenciales según plataforma)
     activate Burp
     Note over Burp: INTERCEPT ON (Burp Suite):<br/>Petición retenida en memoria del proxy
-    Burp-->>RedTeam: 3: Muestra payload crudo (Decode Base64 en SAC USTA)
-    RedTeam->>Burp: 4: Envía a Repeater y altera credenciales
-    Burp->>Backend: 5: Emite POST modificado (TLS 1.3)
+    Burp-->>RedTeam: 3: Muestra payload crudo (Decode Base64 en SAC USTA / JSON en Juice Shop)
+    RedTeam->>Burp: 4: Envía a Repeater y altera credenciales (Fuerza bruta controlada)
+    Burp->>Backend: 5: Emite POST modificado (TLS 1.3 cifrado)
     activate Backend
     Backend->>DB: 6: SELECT hash de usuario
     activate DB
@@ -45,24 +45,24 @@ sequenceDiagram
     Note over Backend: DEFENSA ANTI-ENUMERACIÓN:<br/>Respuesta homogénea en tiempo constante
     Backend-->>Burp: 8: HTTP 401 Unauthorized {"error": "Usuario o clave incorrectos"}
     deactivate Backend
-    Burp-->>RedTeam: 9: Confirma respuesta unificada (Enumeración neutralizada)
+    Burp-->>RedTeam: 9: Confirma respuesta unificada (Enumeración neutralizada en las 4 plataformas)
     deactivate Burp
 
     Note over RedTeam,DB: FASE 2: ESCANEO DINÁMICO AUTOMATIZADO DAST Y SPIDER (OWASP ZAP — FC-LAB-011)
-    RedTeam->>ZAP: 10: Ajusta proxy (127.0.0.1:8090) y lanza Automated Scan
+    RedTeam->>ZAP: 10: Ajusta proxy local (127.0.0.1:8090) y lanza Automated Scan en ZAP
     activate ZAP
-    ZAP->>Backend: 11: Spider rastrea árbol de URLs y formularios (DVWA / Spotify)
+    ZAP->>Backend: 11: ZAP Spider rastrea URLs (104 URLs en Q10 · 234 en Testfire · Spotify)
     activate Backend
-    ZAP->>Backend: 12: Active Scanner inyecta sondas de inyección y prueba endpoints
-    Backend-->>ZAP: 13: Respuestas HTTP (200, 302, 401) y cabeceras
+    ZAP->>Backend: 12: Active Scanner inyecta sondas de ataque (1,509 peticiones HTTP automáticas)
+    Backend-->>ZAP: 13: Respuestas HTTP del servidor (200, 302, 401) y captura de cabeceras
     deactivate Backend
-    Note over ZAP: ALERTAS DAST DETECTADAS (A05):<br/>Falta CSP, falta X-Frame-Options y HttpOnly
-    ZAP-->>RedTeam: 14: Genera reporte formal de auditoría DAST en HTML
+    Note over ZAP: ALERTAS DAST DETECTADAS (OWASP A05):<br/>12 Alertas: Falta CSP, Falta X-Frame-Options, HttpOnly ausente
+    ZAP-->>RedTeam: 14: Genera reporte formal de auditoría DAST en HTML / XML con métricas
     deactivate ZAP
 
     Note over RedTeam,DB: FASE 3: HARDENING DEFENSIVO DE SESIÓN Y CABECERAS (BLUE TEAM — FC-LAB-010 & FC-LAB-011)
     activate Backend
-    Backend-->>Browser: 15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF
+    Backend-->>Browser: 15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF por sesión
     Backend-->>Browser: 16: Cabeceras: Content-Security-Policy + X-Frame-Options: SAMEORIGIN + ServerTokens Prod
     deactivate Backend
 ```

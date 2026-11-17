@@ -99,13 +99,12 @@ sequenceDiagram
     CE->>RS: Presenta el informe final ejecutivo
 ```
 
-* **Responsable del Sistema:** Es el dueño del sistema o la empresa que nos autoriza por escrito a realizar las pruebas.
-* **Coordinador de Evaluación:** Coordina el cronograma, vigila que nadie se pase del alcance acordado y da la cara ante el cliente.
-* **Analista Ofensivo (Red Team):** Es el que se encarga de probar los sistemas, encontrar debilidades y demostrar cómo podrían explotarse.
-* **Analista Defensivo (Blue Team):** Es el que revisa las alertas, propone los cambios de configuración y aplica las medidas de mitigación.
-* **Coordinador Purple Team:** El puente entre ambos mundos. Asegura que lo que descubrió el Red Team le sirva al Blue Team para cerrar la brecha.
-* **Custodio de Evidencias:** Se encarga de la cadena de custodia: que cada captura, log y archivo tenga su hash SHA-256 para demostrar que nadie alteró las pruebas.
-* **Evaluador de Calidad:** Audita que todo esté documentado con rigor y que las pruebas sean 100% reproducibles.
+* **Responsable del Sistema (Docente / Entorno Evaluado):** El docente **Sergio Arley Puerto Moreno** como autoridad académica que aprueba el alcance, o la infraestructura institucional y laboratorios controlados (DVWA, PortSwigger, Netlify, Q10) que fijan los límites de prueba.
+* **Coordinador de Evaluación & Coordinador Purple Team (Cristian Emanuel Hernández Araque):** Lidera la articulación entre ataque y defensa, coordina los cronogramas de pruebas, integra los entregables técnicos y redacta los informes ejecutivos de cierre.
+* **Analista Ofensivo / Red Team Lead (Johan Sebastian Jurado Hernández - ProSebJu):** Responsable de la ejecución de pruebas técnicas intrusivas, explotación en entornos web (DVWA, Netlify, Juice Shop), bypass de validaciones y generación de Pruebas de Concepto (PoC).
+* **Analista Defensivo / Blue Team Lead (Andrés José Rozo Castellanos):** Responsable del análisis de infraestructura y superficie de ataque (DNS, MX, SPF, Maltego), escaneos dinámicos DAST (OWASP ZAP) y el diseño de directrices de hardening y contramedidas.
+* **Custodio de Evidencias & Especialista Forense (Julián Andrés Roa Lizcano):** Encargado de la cadena de custodia formal, verificación de hashes criptográficos SHA-256, diseño de retos forenses de esteganografía y parametrización de herramientas de escaneo y auditoría web.
+* **Evaluadora de Calidad & Auditora Metodológica (Maryori Brigith Barrera Ascanio):** Verifica que cada informe y caso de prueba cumpla con la metodología del framework, valida la reproducibilidad de los pasos técnicos y audita las listas de comprobación de remediación.
 
 ---
 
@@ -140,6 +139,7 @@ AEVOID-framework/
 │   ├── framework.md                   # Definición, objetivos y principios rectores
 │   ├── arquitectura.md                # Explicación a fondo de las 6 fases del ciclo
 │   ├── metodologia.md                 # Procedimiento paso a paso para auditorías
+│   ├── repositorio_drive.md           # Enlace y descripción del repositorio en Google Drive
 │   └── glosario.md                    # Glosario con los 30 términos técnicos oficiales
 ├── framework/                         # Artefactos y gobernanza del framework
 │   ├── fases.md                       # Entradas, salidas y criterios de cierre de cada fase
@@ -184,3 +184,14 @@ AEVOID-framework/
 3. **Control de Versiones y Ramas:**
    * La rama `main` guarda únicamente versiones estables que hayan pasado revisión en equipo.
    * Usamos etiquetas semánticas (`v1.0.0`) para marcar entregas consolidadas.
+
+---
+
+## 7. Repositorio Oficial de Evidencias en Google Drive
+
+Dado que las capturas de pantalla Full HD, los informes individuales en formato `.docx` y los archivos consolidados en PDF (como el documento de 63 páginas de Andrés Rozo y el de 37 páginas de Julián Roa) superan las dimensiones prácticas de almacenamiento de un repositorio Git, todo el soporte probatorio original de los cinco (5) integrantes se encuentra almacenado y accesible en:
+
+* **Enlace de Google Drive:** [https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing](https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing)
+* **Documento descriptivo detallado:** [docs/repositorio_drive.md](file:///c:/Users/emaha/OneDrive/Desktop/frameworkCyber/AEVOID-framework/docs/repositorio_drive.md)
+
+En este enlace se encuentran organizadas las carpetas de `InformesMaryori`, `ProSebJu` (Sebastian Jurado), los consolidados de Julián Roa y Andrés Rozo, y las carpetas de evidencias crudas clasificadas del Laboratorio 1 al 11.

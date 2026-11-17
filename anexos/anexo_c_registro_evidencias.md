@@ -117,3 +117,19 @@ Este anexo consolida el inventario ordenado de evidencias gráficas (capturas de
 * **Evidencia C-11.9:** Panel de alertas de riesgo medio y bajo generadas sobre el portal de login externo.
 * **Evidencia C-11.10:** Escaneo pasivo y de mapeo de rutas sobre la interfaz de login de Spotify (`accounts.spotify.com`).
 * **Evidencia C-11.11:** Resumen comparativo de alertas de seguridad clasificadas por severidad técnica y correlación con el OWASP Top 10.
+
+---
+
+## 2. Repositorio Oficial en la Nube y Carpetas de Integrantes
+
+Para consultar las capturas de pantalla originales a resolución completa (sin compresión), los archivos de sesión de herramientas (`.zap`, `.mtgx`), scripts de prueba y los informes individuales en formato Microsoft Word y PDF elaborados por los cinco estudiantes, consulte el repositorio digital en:
+
+📁 **Enlace de Google Drive:** [https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing](https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing)  
+📄 **Detalle de contenidos:** [docs/repositorio_drive.md](file:///c:/Users/emaha/OneDrive/Desktop/frameworkCyber/AEVOID-framework/docs/repositorio_drive.md)
+
+### Fuentes Documentales Integradas en el Framework:
+1. **Andrés José Rozo Castellanos:** Archivo consolidado `Andres Rozo_Talleres_Ciber.pdf` (63 páginas con soporte de escaneos ZAP, grafos Maltego y talleres 6 a 11).
+2. **Julián Andrés Roa Lizcano:** Archivo consolidado `Consolidado_Laboratorios_Julian_Roa.pdf` (37 páginas con análisis DAST activo de 1509 peticiones en ZAP, reto esteganográfico y talleres 6 a 11).
+3. **Maryori Brigith Barrera Ascanio:** Carpeta `InformesMaryori/` con 11 informes formales en formato `.docx` cubriendo los laboratorios del 1 al 11.
+4. **Johan Sebastian Jurado Hernández:** Carpeta `ProSebJu/` con 11 informes técnicos en formato `.docx` y `.pdf` cubriendo despliegues en Netlify, Kali Linux y DVWA avanzado.
+5. **Cristian Emanuel Hernández Araque:** Fichas consolidadas en Markdown, diagramación UML y estructuración del framework metodológico ÆVØID.

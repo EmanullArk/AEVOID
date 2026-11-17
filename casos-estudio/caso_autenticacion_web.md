@@ -46,33 +46,45 @@ sequenceDiagram
     participant Browser as Navegador (Firefox)
     participant Burp as Burp Suite (Manual Proxy)
     participant ZAP as OWASP ZAP (DAST/Spider)
-    participant Backend as Servidor Web / Auth API
-    participant DB as Base de Datos
+    participant Backend as Servidor Web / Auth API (Juice Shop/Q10/SAC/DVWA)
+    participant DB as Base de Datos (MySQL/PostgreSQL)
 
     Note over RedTeam,DB: FASE 1: INTERCEPTACIÓN MANUAL Y ANTI-ENUMERACIÓN (BURP SUITE — FC-LAB-007)
     RedTeam->>Browser: 1: Digita usuario y clave de prueba
-    Browser->>Burp: 2: HTTP POST /login (Credenciales)
+    Browser->>Burp: 2: HTTP POST /login (Credenciales según plataforma)
+    activate Burp
     Note over Burp: INTERCEPT ON (Burp Suite):<br/>Petición retenida en memoria del proxy
-    Burp-->>RedTeam: 3: Muestra payload crudo (Decode Base64 en SAC USTA)
-    RedTeam->>Burp: 4: Envía a Repeater y altera credenciales
-    Burp->>Backend: 5: Emite POST modificado (TLS 1.3)
-    Backend->>DB: 6: SELECT hash de usuario
-    DB-->>Backend: 7: Resultado: Credenciales erróneas
+    Burp-->>RedTeam: 3: Muestra payload crudo (Decode Base64 en SAC USTA / JSON en Juice Shop)
+    RedTeam->>Burp: 4: Envía a Repeater y altera credenciales (Fuerza bruta controlada)
+    Burp->>Backend: 5: Emite POST modificado (TLS 1.3 cifrado)
+    activate Backend
+    Backend->>DB: 6: SELECT hash seguro
+    activate DB
+    DB-->>Backend: 7: Resultado: Clave inválida
+    deactivate DB
     Note over Backend: DEFENSA ANTI-ENUMERACIÓN:<br/>Respuesta homogénea en tiempo constante
     Backend-->>Burp: 8: HTTP 401 Unauthorized {"error": "Usuario o clave incorrectos"}
-    Burp-->>RedTeam: 9: Confirma respuesta unificada (Enumeración neutralizada)
+    deactivate Backend
+    Burp-->>RedTeam: 9: Visualiza respuesta unificada (Enumeración neutralizada en las 4 plataformas)
+    deactivate Burp
 
     Note over RedTeam,DB: FASE 2: ESCANEO DINÁMICO AUTOMATIZADO DAST Y SPIDER (OWASP ZAP — FC-LAB-011)
-    RedTeam->>ZAP: 10: Ajusta proxy (127.0.0.1:8090) y lanza Automated Scan
-    ZAP->>Backend: 11: Spider rastrea árbol de URLs y formularios (DVWA / Spotify)
-    ZAP->>Backend: 12: Active Scanner inyecta sondas de inyección y prueba endpoints
-    Backend-->>ZAP: 13: Respuestas HTTP (200, 302, 401) y cabeceras
-    Note over ZAP: ALERTAS DAST DETECTADAS (A05):<br/>Falta CSP, falta X-Frame-Options y HttpOnly
-    ZAP-->>RedTeam: 14: Genera reporte formal de auditoría DAST en HTML
+    RedTeam->>ZAP: 10: Ajusta proxy local (127.0.0.1:8090) y lanza Automated Scan en ZAP
+    activate ZAP
+    ZAP->>Backend: 11: ZAP Spider rastrea URLs (104 URLs en Q10 · 234 en Testfire · Spotify)
+    activate Backend
+    ZAP->>Backend: 12: Active Scanner inyecta sondas de ataque (1,509 peticiones HTTP automáticas)
+    Backend-->>ZAP: 13: Respuestas HTTP del servidor (200, 302, 401) y captura de cabeceras
+    deactivate Backend
+    Note over ZAP: ALERTAS DAST DETECTADAS (OWASP A05):<br/>12 Alertas: Falta CSP, Falta X-Frame-Options, HttpOnly ausente
+    ZAP-->>RedTeam: 14: Genera reporte formal de auditoría DAST en HTML / XML con métricas consolidadas
+    deactivate ZAP
 
     Note over RedTeam,DB: FASE 3: HARDENING DEFENSIVO DE SESIÓN Y CABECERAS (BLUE TEAM — FC-LAB-010 & FC-LAB-011)
-    Backend-->>Browser: 15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF
+    activate Backend
+    Backend-->>Browser: 15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF por sesión
     Backend-->>Browser: 16: Cabeceras: Content-Security-Policy + X-Frame-Options: SAMEORIGIN + ServerTokens Prod
+    deactivate Backend
 ```
 
 ### Gráfico Vectorial UML de Alta Definición
@@ -93,3 +105,15 @@ A continuación se presenta la representación visual estandarizada en formato S
    El portal SAC de la USTA incluye un token dinámico en la URL y codifica las credenciales en Base64. Aunque esto evita que alguien que esté detrás de ti mire la clave en la pantalla (*shoulder surfing*), **Base64 no es cifrado**. Cualquier persona con acceso a la red puede decodificarlo al instante con un solo clic en Burp. La verdadera seguridad descansa en la capa de transporte HTTPS (TLS) y en que el backend use algoritmos modernos de hashing (como bcrypt o argon2).
 3. **Recomendación Purple Team:**  
    Para plataformas críticas (como las de notas universitarias o bancarias), no basta con pedir usuario y clave: es indispensable habilitar autenticación multifactor (**MFA**) y bloqueo de IPs por tasa de intentos fallidos (**Rate Limiting**).
+
+---
+
+## 5. Participación del Equipo y Evidencias en Google Drive
+
+Las pruebas de este caso de estudio fueron realizadas y verificadas de manera colaborativa:
+* **Julián Andrés Roa Lizcano & Andrés José Rozo Castellanos:** Interceptación manual con Burp Suite y escaneo DAST automatizado con OWASP ZAP (con más de 1,500 peticiones y 12 alertas registradas).
+* **Johan Sebastian Jurado Hernández:** Verificación de evasión y payloads en formularios web y réplica en entornos Docker.
+* **Maryori Brigith Barrera Ascanio:** Auditoría de respuestas HTTP y validación de listas de chequeo defensivas.
+* **Cristian Emanuel Hernández Araque:** Modelado UML, diagramación de secuencias y consolidación de hallazgos.
+
+> 📁 **Evidencias originales:** Las capturas de tráfico HTTP crudo, archivos de proyecto de Burp Suite, reportes HTML exportados de OWASP ZAP y diagramas vectoriales se encuentran en el [Repositorio de Google Drive](https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing).

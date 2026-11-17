@@ -114,3 +114,13 @@ git push -u origin main --tags
 1. **Zero Secrets:** No subir tokens de Netlify, contraseñas, llaves de API ni cadenas de conexión reales. Toda prueba debe usar datos sintéticos y anonimizados.
 2. **Protección de Datos:** Las capturas de portales institucionales (como el SAC de la USTA) deben tener censurados datos personales de terceros.
 3. **Revisión por Pares:** Ningún cambio entra a `main` sin el visto bueno de los integrantes del equipo.
+
+---
+
+## 4. Almacenamiento de Evidencias Pesadas en Google Drive
+
+Dado que GitHub limita el tamaño de archivos a 100 MB y los repositorios Git se vuelven lentos e inmanejables con cientos de imágenes Full HD, videos y documentos PDF extensos (como los consolidados de 63 y 37 páginas de Andrés Rozo y Julián Roa, y las carpetas de `InformesMaryori` y `ProSebJu`), **toda evidencia en bruto se preserva en la nube oficial del equipo**:
+
+* 🔗 **Google Drive:** [https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing](https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing)
+* 📄 **Guía de estructura del Drive:** [docs/repositorio_drive.md](file:///c:/Users/emaha/OneDrive/Desktop/frameworkCyber/AEVOID-framework/docs/repositorio_drive.md)
+* 🔐 **Verificación Forense:** Cada archivo en el Drive coincide con los hashes SHA-256 listados en el `Anexo C`.

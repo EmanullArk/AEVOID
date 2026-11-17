@@ -87,7 +87,18 @@ Para que no queden dudas de quién hace qué en cada fase, nos regimos por esta 
 | **05. Mitigación** | I | A | I | **R** | C | I | I |
 | **06. Verificación** | **I** | **A** | **R** | C | **R** | C | **R** |
 
-* **R (Responsible):** Es quien hace la tarea con las manos en la masa.
-* **A (Accountable):** Es quien responde y aprueba que la tarea esté bien hecha.
-* **C (Consulted):** Es a quien se le pide opinión o datos técnicos.
-* **I (Informed):** Es a quien se le notifica el resultado final.
+---
+
+## 4. Asignación Real de Roles en el Equipo de Estudiantes
+
+Para garantizar una ejecución impecable y fiel a la realidad operativa de la ciberseguridad, los cinco integrantes del semestre asumimos roles especializados acordes a nuestras fortalezas y aportes en los laboratorios:
+
+| Integrante del Equipo | Rol Operativo en ÆVØID | Foco Técnico Principal a lo largo de los 11 Laboratorios |
+| :--- | :--- | :--- |
+| **Cristian Emanuel Hernández Araque** | **Coordinador de Evaluación & Purple Lead** | Coordinación metodológica general, diseño de la arquitectura del framework, modelado de diagramas UML (Secuencia, Actividades y Casos de Uso), integración de las matrices P01-P11 y redacción técnica consolidada. |
+| **Maryori Brigith Barrera Ascanio** | **Evaluadora de Calidad & Auditora Blue Team** | Auditoría y control de calidad sobre los 11 laboratorios (`InformesMaryori/`), verificación de reproducibilidad de comandos, revisión de matrices de riesgo, y diseño de checklists de hardening y mitigación. |
+| **Johan Sebastian Jurado Hernández** | **Analista Ofensivo (Red Team Lead)** | Ejecución de ataques técnicos (`ProSebJu/`), despliegue de entornos web en la nube (`lab3sebastianjurado.netlify.app`), ataques de fuerza bruta, evasión de filtros en subida de archivos (webshells PHP), directory traversal (LFI) e inyecciones SQL ciegas. |
+| **Julián Andrés Roa Lizcano** | **Custodio de Evidencias & Especialista Forense** | Gestión de cadena de custodia y catálogo de hashes SHA-256 (`Consolidado_Laboratorios_Julian_Roa.pdf`), diseño y resolución del reto forense `reto_esteganografia_roa`, simulación de pretextos de ingeniería social y parametrización de escaneos activos en OWASP ZAP (1509 peticiones HTTP, 12 alertas). |
+| **Andrés José Rozo Castellanos** | **Analista Defensivo (Blue Team Lead)** | Análisis de infraestructura pasiva y DNS/SPF/MX (`Andres Rozo_Talleres_Ciber.pdf`), construcción de grafos OSINT en Maltego (Tesla, Microsoft, AWS), auditoría DAST con OWASP ZAP en `demo.testfire.net` (234 URLs exploradas) y propuesta de contramedidas de defensa en profundidad. |
+
+> 📁 **Evidencias originales y carpetas de cada integrante:** Todos los informes individuales, archivos Word, consolidados PDF y capturas de soporte de cada uno de nosotros se encuentran archivados y abiertos para revisión en la carpeta oficial de Google Drive: [Repositorio en Google Drive](https://drive.google.com/drive/folders/1l7C8SUD9tOp-fl7noQSQNtzoc9Z6bK56?usp=sharing) (descrito a detalle en [docs/repositorio_drive.md](file:///c:/Users/emaha/OneDrive/Desktop/frameworkCyber/AEVOID-framework/docs/repositorio_drive.md)).
