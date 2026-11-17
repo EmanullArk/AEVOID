@@ -64,13 +64,6 @@ export function LabsView({ preselectedLabId, onClearPreselect, onAnnounce }: Lab
         </span>
       </header>
 
-      <div className="notice-banner" role="note">
-        <Info size={18} aria-hidden="true" style={{ flexShrink: 0, marginBlockStart: '0.1rem' }} />
-        <span>
-          <strong>Nota de alcance:</strong> <code>laboratorios/lab-10-dvwa-avanzado/README.md</code> (FC-LAB-010) fue omitido de este catálogo según selección del usuario tras bloqueo de lectura por Windows Defender.
-        </span>
-      </div>
-
       {/* Filters */}
       <section className="card" aria-label="Filtros de laboratorios" style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}>
