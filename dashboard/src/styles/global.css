@@ -1,0 +1,158 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text-1);
+  line-height: 1.55;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-block-size: 100dvb;
+  background-color: var(--bg);
+  color: var(--text-1);
+}
+
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure {
+  margin-block: 0;
+}
+
+ul, ol {
+  padding-inline-start: 1.25rem;
+}
+
+img, svg {
+  display: block;
+  max-inline-size: 100%;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+button, input, select, textarea {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: var(--accent);
+  text-underline-offset: 0.2em;
+}
+
+:where(a:any-link, button, input, select, textarea, [tabindex]):focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* Visually hidden utility keeping focusable skip links visible on focus */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  position: absolute !important;
+  clip-path: inset(50%) !important;
+  overflow: hidden !important;
+  inline-size: 1px !important;
+  block-size: 1px !important;
+  margin: -1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  white-space: nowrap !important;
+}
+
+.skip-link {
+  position: fixed;
+  inset-block-start: 0.75rem;
+  inset-inline-start: 0.75rem;
+  z-index: 200;
+  padding: 0.625rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* App Shell Grid */
+.app-shell {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "topbar"
+    "main";
+  min-block-size: 100dvb;
+}
+
+@media (min-width: 64rem) {
+  .app-shell {
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: "sidebar main";
+  }
+}
+
+.main-area {
+  grid-area: main;
+  min-inline-size: 0;
+  display: flex;
+  flex-direction: column;
+  padding-inline: clamp(1rem, 2.5vw, 2.25rem);
+  padding-block: clamp(1rem, 2vw, 1.75rem);
+  gap: 1.5rem;
+}
+
+.main-footer {
+  margin-block-start: auto;
+  padding-block-start: 1.5rem;
+  border-block-start: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+
+/* Scrollbar Legacy Fallback */
+@supports not (scrollbar-color: auto) {
+  .scroller,
+  .table-wrapper,
+  .sidebar-nav {
+    scrollbar-width: auto;
+  }
+
+  .scroller::-webkit-scrollbar,
+  .table-wrapper::-webkit-scrollbar,
+  .sidebar-nav::-webkit-scrollbar {
+    inline-size: 10px;
+    block-size: 10px;
+  }
+
+  .scroller::-webkit-scrollbar-thumb,
+  .table-wrapper::-webkit-scrollbar-thumb,
+  .sidebar-nav::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border-radius: 999px;
+  }
+
+  .scroller::-webkit-scrollbar-track,
+  .table-wrapper::-webkit-scrollbar-track,
+  .sidebar-nav::-webkit-scrollbar-track {
+    background: var(--scrollbar-track);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

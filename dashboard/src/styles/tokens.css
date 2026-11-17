@@ -1,0 +1,172 @@
+:root {
+  color-scheme: dark light;
+
+  /* Raw Palette - Dark */
+  --raw-bg-dark: #090e1a;
+  --raw-surface-1-dark: #0f172a;
+  --raw-surface-2-dark: #162033;
+  --raw-surface-3-dark: #1e293b;
+  --raw-border-dark: #293548;
+  --raw-border-strong-dark: #3b4d68;
+  --raw-text-1-dark: #f1f5f9;
+  --raw-text-2-dark: #cbd5e1;
+  --raw-text-3-dark: #94a3b8;
+
+  /* Raw Palette - Light */
+  --raw-bg-light: #f1f5f9;
+  --raw-surface-1-light: #ffffff;
+  --raw-surface-2-light: #f8fafc;
+  --raw-surface-3-light: #e2e8f0;
+  --raw-border-light: #cbd5e1;
+  --raw-border-strong-light: #94a3b8;
+  --raw-text-1-light: #0f172a;
+  --raw-text-2-light: #334155;
+  --raw-text-3-light: #475569;
+
+  /* Brand & Semantic Accents */
+  --accent-dark: #38bdf8;
+  --accent-light: #0369a1;
+  --accent-ink-dark: #082f49;
+  --accent-ink-light: #ffffff;
+
+  --purple-dark: #c084fc;
+  --purple-light: #7e22ce;
+
+  --emerald-dark: #34d399;
+  --emerald-light: #047857;
+
+  --rose-dark: #fb7185;
+  --rose-light: #be123c;
+
+  --amber-dark: #fbbf24;
+  --amber-light: #b45309;
+
+  --info-dark: #94a3b8;
+  --info-light: #475569;
+
+  /* Active Defaults (Dark-first SOC fallback when light-dark unavailable) */
+  --bg: var(--raw-bg-dark);
+  --surface-1: var(--raw-surface-1-dark);
+  --surface-2: var(--raw-surface-2-dark);
+  --surface-3: var(--raw-surface-3-dark);
+  --border: var(--raw-border-dark);
+  --border-strong: var(--raw-border-strong-dark);
+  --text-1: var(--raw-text-1-dark);
+  --text-2: var(--raw-text-2-dark);
+  --text-3: var(--raw-text-3-dark);
+  --accent: var(--accent-dark);
+  --accent-ink: var(--accent-ink-dark);
+  --team-purple: var(--purple-dark);
+  --team-blue: var(--emerald-dark);
+  --team-red: var(--rose-dark);
+  --sev-critical: var(--rose-dark);
+  --sev-high: var(--amber-dark);
+  --sev-medium: var(--accent-dark);
+  --sev-low: var(--emerald-dark);
+  --sev-info: var(--info-dark);
+  --focus-ring: #38bdf8;
+  --scrollbar-thumb: #475569;
+  --scrollbar-track: #0f172a;
+  --code-bg: #050912;
+  --code-text: #e2e8f0;
+
+  --font-sans: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.125rem;
+  --shadow-card: 0 10px 28px -12px rgb(2 6 23 / 0.55);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --bg: var(--raw-bg-light);
+    --surface-1: var(--raw-surface-1-light);
+    --surface-2: var(--raw-surface-2-light);
+    --surface-3: var(--raw-surface-3-light);
+    --border: var(--raw-border-light);
+    --border-strong: var(--raw-border-strong-light);
+    --text-1: var(--raw-text-1-light);
+    --text-2: var(--raw-text-2-light);
+    --text-3: var(--raw-text-3-light);
+    --accent: var(--accent-light);
+    --accent-ink: var(--accent-ink-light);
+    --team-purple: var(--purple-light);
+    --team-blue: var(--emerald-light);
+    --team-red: var(--rose-light);
+    --sev-critical: var(--rose-light);
+    --sev-high: var(--amber-light);
+    --sev-medium: var(--accent-light);
+    --sev-low: var(--emerald-light);
+    --sev-info: var(--info-light);
+    --focus-ring: #0369a1;
+    --scrollbar-thumb: #94a3b8;
+    --scrollbar-track: #e2e8f0;
+    --shadow-card: 0 8px 24px -12px rgb(15 23 42 / 0.14);
+  }
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: var(--raw-bg-light);
+  --surface-1: var(--raw-surface-1-light);
+  --surface-2: var(--raw-surface-2-light);
+  --surface-3: var(--raw-surface-3-light);
+  --border: var(--raw-border-light);
+  --border-strong: var(--raw-border-strong-light);
+  --text-1: var(--raw-text-1-light);
+  --text-2: var(--raw-text-2-light);
+  --text-3: var(--raw-text-3-light);
+  --accent: var(--accent-light);
+  --accent-ink: var(--accent-ink-light);
+  --team-purple: var(--purple-light);
+  --team-blue: var(--emerald-light);
+  --team-red: var(--rose-light);
+  --sev-critical: var(--rose-light);
+  --sev-high: var(--amber-light);
+  --sev-medium: var(--accent-light);
+  --sev-low: var(--emerald-light);
+  --sev-info: var(--info-light);
+  --focus-ring: #0369a1;
+  --scrollbar-thumb: #94a3b8;
+  --scrollbar-track: #e2e8f0;
+  --shadow-card: 0 8px 24px -12px rgb(15 23 42 / 0.14);
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+}
+
+@supports (color: light-dark(white, black)) {
+  :root {
+    --bg: light-dark(var(--raw-bg-light), var(--raw-bg-dark));
+    --surface-1: light-dark(var(--raw-surface-1-light), var(--raw-surface-1-dark));
+    --surface-2: light-dark(var(--raw-surface-2-light), var(--raw-surface-2-dark));
+    --surface-3: light-dark(var(--raw-surface-3-light), var(--raw-surface-3-dark));
+    --border: light-dark(var(--raw-border-light), var(--raw-border-dark));
+    --border-strong: light-dark(var(--raw-border-strong-light), var(--raw-border-strong-dark));
+    --text-1: light-dark(var(--raw-text-1-light), var(--raw-text-1-dark));
+    --text-2: light-dark(var(--raw-text-2-light), var(--raw-text-2-dark));
+    --text-3: light-dark(var(--raw-text-3-light), var(--raw-text-3-dark));
+    --accent: light-dark(var(--accent-light), var(--accent-dark));
+    --accent-ink: light-dark(var(--accent-ink-light), var(--accent-ink-dark));
+    --team-purple: light-dark(var(--purple-light), var(--purple-dark));
+    --team-blue: light-dark(var(--emerald-light), var(--emerald-dark));
+    --team-red: light-dark(var(--rose-light), var(--rose-dark));
+    --sev-critical: light-dark(var(--rose-light), var(--rose-dark));
+    --sev-high: light-dark(var(--amber-light), var(--amber-dark));
+    --sev-medium: light-dark(var(--accent-light), var(--accent-dark));
+    --sev-low: light-dark(var(--emerald-light), var(--emerald-dark));
+    --sev-info: light-dark(var(--info-light), var(--info-dark));
+    --focus-ring: light-dark(#0369a1, #38bdf8);
+    --scrollbar-thumb: light-dark(#94a3b8, #475569);
+    --scrollbar-track: light-dark(#e2e8f0, #0f172a);
+  }
+}
+
+:root {
+  accent-color: var(--accent);
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}

@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1140 1080" width="100%" height="100%" style="background:#0f172a; font-family:'Segoe UI', Helvetica, Arial, sans-serif;">
+  <defs>
+    <!-- Markers for arrows -->
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc" />
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    </marker>
+    <marker id="arrow-return" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrow-return-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 10 5 L 0 9 z" fill="#34d399" />
+    </marker>
+    <!-- Shadow filter for clean UI boxes -->
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="4" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <!-- ========================================================================= -->
+  <!-- TOP INSTITUTIONAL HEADER & TITLE                                          -->
+  <!-- ========================================================================= -->
+  <rect x="30" y="16" width="1080" height="78" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="570" y="38" text-anchor="middle" fill="#94a3b8" font-size="11.5" font-weight="600" letter-spacing="0.5">UNIVERSIDAD SANTO TOMÁS — SECCIONAL TUNJA | INGENIERÍA DE SISTEMAS (8° SEMESTRE)</text>
+  <text x="570" y="59" text-anchor="middle" fill="#38bdf8" font-size="17" font-weight="bold" letter-spacing="0.6">DIAGRAMA DE SECUENCIA UML: EVALUACIÓN INTEGRAL DE AUTENTICACIÓN</text>
+  <text x="570" y="78" text-anchor="middle" fill="#cbd5e1" font-size="11">Interceptación con Burp Suite (FC-LAB-007) · Escaneo DAST con OWASP ZAP (FC-LAB-011) · Hardening Blue Team (FC-LAB-010)</text>
+
+  <!-- ========================================================================= -->
+  <!-- LIFELINE HEADERS (BOXES)                                                  -->
+  <!-- ========================================================================= -->
+  <!-- 1. Analista Red/Purple Team -->
+  <rect x="25" y="108" width="150" height="46" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="100" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">Analista</text>
+  <text x="100" y="145" text-anchor="middle" fill="#38bdf8" font-size="10">(Red / Purple Team)</text>
+
+  <!-- 2. Navegador Web (Firefox) -->
+  <rect x="210" y="108" width="150" height="46" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="285" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">Navegador Web</text>
+  <text x="285" y="145" text-anchor="middle" fill="#94a3b8" font-size="10">(Mozilla Firefox)</text>
+
+  <!-- 3. Burp Suite (Manual Proxy) -->
+  <rect x="405" y="108" width="150" height="46" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="2" filter="url(#shadow)"/>
+  <text x="480" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">Burp Suite</text>
+  <text x="480" y="145" text-anchor="middle" fill="#c084fc" font-size="10">(Proxy / Repeater)</text>
+
+  <!-- 4. OWASP ZAP (DAST / Spider) -->
+  <rect x="600" y="108" width="150" height="46" rx="6" fill="#1e293b" stroke="#c084fc" stroke-width="2" filter="url(#shadow)"/>
+  <text x="675" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">OWASP ZAP 2.17</text>
+  <text x="675" y="145" text-anchor="middle" fill="#e879f9" font-size="10">(DAST / Spider / Active)</text>
+
+  <!-- 5. Servidor Web / Auth API -->
+  <rect x="790" y="108" width="160" height="46" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="2" filter="url(#shadow)"/>
+  <text x="870" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">Servidor Web / API</text>
+  <text x="870" y="145" text-anchor="middle" fill="#38bdf8" font-size="9.5">(Juice Shop / Q10 / SAC / DVWA)</text>
+
+  <!-- 6. Base de Datos -->
+  <rect x="975" y="108" width="120" height="46" rx="6" fill="#1e293b" stroke="#34d399" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1035" y="131" text-anchor="middle" fill="#f8fafc" font-size="11.5" font-weight="bold">Base de Datos</text>
+  <text x="1035" y="145" text-anchor="middle" fill="#34d399" font-size="10">(MySQL / PostgreSQL)</text>
+
+  <!-- ========================================================================= -->
+  <!-- LIFELINE DASHED LINES                                                     -->
+  <!-- ========================================================================= -->
+  <line x1="100" y1="154" x2="100" y2="915" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="285" y1="154" x2="285" y2="915" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="480" y1="154" x2="480" y2="915" stroke="#6b21a8" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="675" y1="154" x2="675" y2="915" stroke="#7e22ce" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="870" y1="154" x2="870" y2="915" stroke="#334155" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <line x1="1035" y1="154" x2="1035" y2="915" stroke="#065f46" stroke-width="1.5" stroke-dasharray="6,4"/>
+
+  <!-- ========================================================================= -->
+  <!-- ACTIVATION BOXES                                                          -->
+  <!-- ========================================================================= -->
+  <!-- Burp Suite Activation (Phase 1) -->
+  <rect x="474" y="240" width="12" height="295" fill="#a855f7" rx="2"/>
+  <!-- Server Activation (Phase 1) -->
+  <rect x="864" y="370" width="12" height="135" fill="#38bdf8" rx="2"/>
+  <!-- DB Activation (Phase 1) -->
+  <rect x="1029" y="400" width="12" height="35" fill="#34d399" rx="2"/>
+
+  <!-- OWASP ZAP Activation (Phase 2) -->
+  <rect x="669" y="610" width="12" height="170" fill="#c084fc" rx="2"/>
+  <!-- Server Activation (Phase 2) -->
+  <rect x="864" y="640" width="12" height="65" fill="#38bdf8" rx="2"/>
+
+  <!-- Server Activation (Phase 3 Hardening) -->
+  <rect x="864" y="840" width="12" height="45" fill="#34d399" rx="2"/>
+
+  <!-- ========================================================================= -->
+  <!-- FASE 1: INTERCEPTACIÓN MANUAL Y TESTING ANTI-ENUMERACIÓN (BURP SUITE)     -->
+  <!-- ========================================================================= -->
+  <rect x="35" y="168" width="1070" height="26" rx="4" fill="#1e293b" stroke="#38bdf8" stroke-width="1.2"/>
+  <text x="570" y="185" text-anchor="middle" fill="#38bdf8" font-size="12" font-weight="bold" letter-spacing="0.5">FASE 1: INTERCEPTACIÓN MANUAL Y TEST DE ANTI-ENUMERACIÓN (BURP SUITE — FC-LAB-007)</text>
+
+  <!-- Message 1 -->
+  <line x1="100" y1="210" x2="285" y2="210" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="192" y="202" text-anchor="middle" fill="#e2e8f0" font-size="11">1: Digita usuario y clave de prueba</text>
+
+  <!-- Message 2 -->
+  <line x1="285" y1="240" x2="474" y2="240" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="380" y="232" text-anchor="middle" fill="#e2e8f0" font-size="11">2: HTTP POST /login (Credenciales)</text>
+
+  <!-- Note: Intercept Active -->
+  <rect x="365" y="255" width="230" height="42" rx="4" fill="#581c87" stroke="#c084fc" stroke-width="1" filter="url(#shadow)"/>
+  <text x="480" y="272" text-anchor="middle" fill="#f8fafc" font-size="10.5" font-weight="bold">INTERCEPT ON (Burp Suite)</text>
+  <text x="480" y="287" text-anchor="middle" fill="#f1f5f9" font-size="9.5">Petición retenida en memoria del proxy local</text>
+
+  <!-- Message 3 -->
+  <line x1="474" y1="310" x2="100" y2="310" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="287" y="302" text-anchor="middle" fill="#cbd5e1" font-size="11">3: Muestra payload crudo (Decode Base64 en SAC USTA / JSON en Juice Shop)</text>
+
+  <!-- Message 4 -->
+  <line x1="100" y1="340" x2="474" y2="340" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="287" y="332" text-anchor="middle" fill="#e2e8f0" font-size="11">4: Envía a Repeater y altera credenciales (Fuerza bruta controlada)</text>
+
+  <!-- Message 5 -->
+  <line x1="486" y1="370" x2="864" y2="370" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="675" y="362" text-anchor="middle" fill="#e2e8f0" font-size="11">5: Emite POST modificado hacia backend (TLS 1.3 cifrado)</text>
+
+  <!-- Message 6 -->
+  <line x1="876" y1="400" x2="1029" y2="400" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-blue)"/>
+  <text x="952" y="392" text-anchor="middle" fill="#e2e8f0" font-size="11">6: SELECT hash seguro</text>
+
+  <!-- Message 7 -->
+  <line x1="1029" y1="430" x2="876" y2="430" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="952" y="422" text-anchor="middle" fill="#cbd5e1" font-size="11">7: Resultado: Clave inválida</text>
+
+  <!-- Note: Defensive anti-enumeration -->
+  <rect x="750" y="445" width="240" height="42" rx="4" fill="#064e3b" stroke="#34d399" stroke-width="1" filter="url(#shadow)"/>
+  <text x="870" y="462" text-anchor="middle" fill="#34d399" font-size="10.5" font-weight="bold">DEFENSA ANTI-ENUMERACIÓN</text>
+  <text x="870" y="477" text-anchor="middle" fill="#ecfdf5" font-size="9.5">Respuesta homogénea en tiempo constante</text>
+
+  <!-- Message 8 -->
+  <line x1="864" y1="500" x2="486" y2="500" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="675" y="492" text-anchor="middle" fill="#cbd5e1" font-size="11">8: HTTP 401 Unauthorized {"error": "Usuario o clave incorrectos"}</text>
+
+  <!-- Message 9 -->
+  <line x1="474" y1="530" x2="100" y2="530" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="287" y="522" text-anchor="middle" fill="#cbd5e1" font-size="11">9: Visualiza respuesta unificada (Enumeración de usuarios neutralizada en las 4 plataformas)</text>
+
+  <!-- ========================================================================= -->
+  <!-- FASE 2: ESCANEO DINÁMICO AUTOMATIZADO DAST Y SPIDER (OWASP ZAP)           -->
+  <!-- ========================================================================= -->
+  <rect x="35" y="565" width="1070" height="26" rx="4" fill="#1e293b" stroke="#a855f7" stroke-width="1.2"/>
+  <text x="570" y="582" text-anchor="middle" fill="#c084fc" font-size="12" font-weight="bold" letter-spacing="0.5">FASE 2: ESCANEO DINÁMICO AUTOMATIZADO DAST Y SPIDER (OWASP ZAP — FC-LAB-011)</text>
+
+  <!-- Message 10 -->
+  <line x1="100" y1="610" x2="669" y2="610" stroke="#c084fc" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+  <text x="384" y="602" text-anchor="middle" fill="#e2e8f0" font-size="11">10: Ajusta proxy local (127.0.0.1:8090) y lanza Automated Scan en ZAP</text>
+
+  <!-- Message 11 -->
+  <line x1="681" y1="640" x2="864" y2="640" stroke="#c084fc" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+  <text x="772" y="632" text-anchor="middle" fill="#e2e8f0" font-size="11">11: ZAP Spider rastrea URLs (104 URLs en Q10 · 234 en Testfire · Spotify)</text>
+
+  <!-- Message 12 -->
+  <line x1="681" y1="670" x2="864" y2="670" stroke="#c084fc" stroke-width="1.8" marker-end="url(#arrow-purple)"/>
+  <text x="772" y="662" text-anchor="middle" fill="#e2e8f0" font-size="11">12: Active Scanner inyecta sondas de ataque (1,509 peticiones HTTP automáticas)</text>
+
+  <!-- Message 13 -->
+  <line x1="864" y1="700" x2="681" y2="700" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="772" y="692" text-anchor="middle" fill="#cbd5e1" font-size="11">13: Respuestas HTTP del servidor (200, 302, 401) y captura de cabeceras</text>
+
+  <!-- Note: DAST Alerts -->
+  <rect x="545" y="715" width="260" height="44" rx="4" fill="#701a75" stroke="#f472b6" stroke-width="1" filter="url(#shadow)"/>
+  <text x="675" y="732" text-anchor="middle" fill="#fbcfe8" font-size="10.5" font-weight="bold">ALERTAS DAST DETECTADAS (OWASP A05)</text>
+  <text x="675" y="747" text-anchor="middle" fill="#fdf2f8" font-size="9.5">12 Alertas: Falta CSP, Falta X-Frame-Options, HttpOnly ausente</text>
+
+  <!-- Message 14 -->
+  <line x1="669" y1="775" x2="100" y2="775" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrow-return)"/>
+  <text x="384" y="767" text-anchor="middle" fill="#cbd5e1" font-size="11">14: Genera reporte formal de auditoría DAST en HTML / XML con métricas consolidadas</text>
+
+  <!-- ========================================================================= -->
+  <!-- FASE 3: CONTROLES DEFENSIVOS BLUE TEAM (HARDENING DE SESIÓN Y HEADERS)    -->
+  <!-- ========================================================================= -->
+  <rect x="35" y="805" width="1070" height="26" rx="4" fill="#1e293b" stroke="#34d399" stroke-width="1.2"/>
+  <text x="570" y="822" text-anchor="middle" fill="#34d399" font-size="12" font-weight="bold" letter-spacing="0.5">FASE 3: HARDENING DEFENSIVO DE SESIÓN Y CABECERAS (BLUE TEAM — FC-LAB-010 &amp; FC-LAB-011)</text>
+
+  <!-- Message 15 -->
+  <line x1="864" y1="845" x2="285" y2="845" stroke="#34d399" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow-return-green)"/>
+  <text x="574" y="837" text-anchor="middle" fill="#a7f3d0" font-size="11">15: Set-Cookie: session_id=...; HttpOnly; Secure; SameSite=Strict + Token Anti-CSRF por sesión</text>
+
+  <!-- Message 16 -->
+  <line x1="864" y1="875" x2="285" y2="875" stroke="#34d399" stroke-width="1.8" stroke-dasharray="5,3" marker-end="url(#arrow-return-green)"/>
+  <text x="574" y="867" text-anchor="middle" fill="#a7f3d0" font-size="11">16: Cabeceras HTTP: Content-Security-Policy + X-Frame-Options: SAMEORIGIN + ServerTokens Prod</text>
+
+  <!-- ========================================================================= -->
+  <!-- PLATFORMS BADGE BAR                                                       -->
+  <!-- ========================================================================= -->
+  <rect x="35" y="910" width="1070" height="34" rx="4" fill="#0f172a" stroke="#475569" stroke-width="1"/>
+  <text x="570" y="931" text-anchor="middle" fill="#94a3b8" font-size="10.5">
+    <tspan fill="#38bdf8" font-weight="bold">Plataformas Evaluadas:</tspan> 
+    <tspan fill="#f1f5f9"> OWASP Juice Shop (JSON /rest/user/login) </tspan> | 
+    <tspan fill="#f1f5f9"> UVirtual Q10 (Form-urlencoded /Login) </tspan> | 
+    <tspan fill="#f1f5f9"> SAC USTA (Base64 /fetch/{token}) </tspan> | 
+    <tspan fill="#f1f5f9"> PortSwigger Academy (OAuth / CSRF) </tspan>
+  </text>
+
+  <!-- ========================================================================= -->
+  <!-- BOTTOM INSTITUTIONAL & TEAM FOOTER BOX                                    -->
+  <!-- ========================================================================= -->
+  <rect x="35" y="955" width="1070" height="95" rx="8" fill="#1e293b" stroke="#38bdf8" stroke-width="1.5" filter="url(#shadow)"/>
+  <text x="570" y="980" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold">FRAMEWORK METODOLÓGICO DE CIBERSEGURIDAD ÆVØID</text>
+  <text x="570" y="1000" text-anchor="middle" fill="#e2e8f0" font-size="11">Universidad Santo Tomás — Seccional Tunja | Docente: Sergio Arley Puerto Moreno | Ciberseguridad 8° Semestre</text>
+  <text x="570" y="1021" text-anchor="middle" fill="#94a3b8" font-size="11" font-weight="600">Integrantes del Equipo:</text>
+  <text x="570" y="1038" text-anchor="middle" fill="#cbd5e1" font-size="10.5">Maryori Brigith Barrera Ascanio · Cristian Emanuel Hernández Araque · Johan Sebastian Jurado Hernández · Julián Andrés Roa Lizcano · Andrés José Rozo Castellanos</text>
+</svg>
